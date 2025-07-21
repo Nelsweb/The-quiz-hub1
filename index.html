@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>King Crypto Test</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #f0f8ff, #e6e6fa);
+    }
+    header {
+      background-color: #222;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .marquee {
+      font-weight: bold;
+      color: gold;
+      background: #000;
+      padding: 10px;
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+    }
+    .marquee span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 15s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-100%); }
+    }
+    main {
+      padding: 2rem;
+      text-align: center;
+    }
+    .quiz-options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .quiz-card {
+      background: white;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      width: 250px;
+      transition: transform 0.2s ease-in-out;
+    }
+    .quiz-card:hover {
+      transform: scale(1.03);
+    }
+    .admin-btn {
+      margin-top: 2rem;
+      padding: 0.7rem 1.5rem;
+      background: #ff9800;
+      color: white;
+      border: none;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .admin-btn:hover {
+      background: #e68900;
+    }
+  </style>
+</head>
+<body>
+  <div class="marquee"><span>FEDERAL UNIVERSITY LOKOJA</span></div>
+  <header>
+    <h1>King Crypto Test</h1>
+  </header>
+  <main>
+    <p><strong>Welcome to King Crypto Quiz Hub! 🧠✨</strong></p>
+    <p>Level up your knowledge with fun, engaging, and interactive quizzes across various subjects!</p>
+    <div class="quiz-options">
+      <div class="quiz-card" style="border-left: 5px solid #ff5733">Physics 102</div>
+      <div class="quiz-card" style="border-left: 5px solid #33c1ff">Maths 102</div>
+      <div class="quiz-card" style="border-left: 5px solid #8e44ad">Chemistry 142</div>
+      <div class="quiz-card" style="border-left: 5px solid #27ae60">Biology 102</div>
+    </div>
+    <button class="admin-btn" onclick="window.location.href='admin.html'">🔐 Go to Admin Panel</button>
+  </main>
+</body>
+</html>

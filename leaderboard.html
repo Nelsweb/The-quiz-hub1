@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leaderboard</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f2f2f2; }
+    h2 { text-align: center; }
+    .board { max-width: 600px; margin: auto; background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .user { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; }
+    .rank { font-weight: bold; }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="backend/firebase.js"></script>
+</head>
+<body>
+  <h2>🏆 Top Performers</h2>
+  <div class="board" id="leaderboard"></div>
+
+<script>
+db.ref("results").once("value").then(snapshot => {
+  const scores = {};
+  snapshot.forEach(userSnap => {
+    const user = userSnap.key;
+    let highest = 0;
+    userSnap.forEach(result => {
+      highest = Math.max(highest, result.val().score);
+    });
+    scores[user] = highest;
+  });
+
+  const sorted = Object.entries(scores).sort((a,b) => b[1]-a[1]).slice(0,10);
+  const board = document.getElementById("leaderboard");
+  sorted.forEach(([matric, score], i) => {
+    const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : "";
+    const row = `<div class='user'><span class='rank'>${medal} ${i+1}. ${matric}</span><span>${score} pts</span></div>`;
+    board.innerHTML += row;
+  });
+});
+</script>
+</body>
+</html>

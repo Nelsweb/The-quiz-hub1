@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="backend/firebase.js"></script>
+</head>
+<body>
+<form id="registerForm">
+  <h2>Register</h2>
+  <input type="text" placeholder="Matric Number" id="matric" required />
+  <input type="text" placeholder="RRR" id="rrr" required />
+  <input type="email" placeholder="Email" id="email" required />
+  <button type="submit">Pay ₦200 & Register</button>
+</form>
+
+<script>
+document.getElementById('registerForm').onsubmit = function(e) {
+  e.preventDefault();
+  const matric = document.getElementById("matric").value;
+  const rrr = document.getElementById("rrr").value;
+  const email = document.getElementById("email").value;
+
+  let handler = PaystackPop.setup({
+    key: 'pk_live_691f0137e7ce1a10814b51da0710d626f7c1ed38',
+    email: email,
+    amount: 20000,
+    callback: function(response) {
+      db.ref('users/' + matric).set({ matric, rrr, email }, function(error) {
+        if (error) {
+          alert("Registration failed.");
+        } else {
+          alert("Payment successful! Registration complete.");
+          window.location.href = "login.html";
+        }
+      });
+    },
+    onClose: function() {
+      alert('Payment window closed.');
+    }
+  });
+  handler.openIframe();
+};
+</script>
+</body>
+</html>

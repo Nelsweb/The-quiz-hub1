@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Access - King Crypto Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .admin-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+    input {
+      padding: 0.6rem;
+      font-size: 1rem;
+      margin: 1rem 0;
+      width: 100%;
+    }
+    button {
+      background: #333;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #111;
+    }
+    .error {
+      color: red;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-container">
+    <h2>🔐 Admin Access</h2>
+    <p>Enter your admin unlock code</p>
+    <input type="password" id="adminCode" placeholder="Enter 'Glory' or 'Gladys'" />
+    <button onclick="verifyAdmin()">Enter</button>
+    <div id="errorMsg" class="error"></div>
+  </div>
+
+  <script>
+    function verifyAdmin() {
+      const code = document.getElementById('adminCode').value.trim().toLowerCase();
+      if (code === 'glory' || code === 'gladys') {
+        window.location.href = 'dashboard.html'; // the real admin dashboard
+      } else {
+        document.getElementById('errorMsg').textContent = 'Invalid code. Try again.';
+      }
+    }
+  </script>
+</body>
+</html>

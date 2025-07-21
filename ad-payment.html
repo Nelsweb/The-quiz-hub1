@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ad Payment</title>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="backend/firebase.js"></script>
+</head>
+<body>
+<form id="adForm">
+  <h2>Ad Space Payment</h2>
+  <input type="text" id="name" placeholder="Your Name" required />
+  <input type="email" id="email" placeholder="Email" required />
+  <textarea id="adContent" placeholder="Your Ad Content" required></textarea>
+  <button type="submit">Pay ₦3000 to Submit Ad</button>
+</form>
+
+<script>
+document.getElementById('adForm').onsubmit = function(e) {
+  e.preventDefault();
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const adContent = document.getElementById("adContent").value;
+
+  let handler = PaystackPop.setup({
+    key: 'pk_live_691f0137e7ce1a10814b51da0710d626f7c1ed38',
+    email: email,
+    amount: 300000,
+    callback: function(response) {
+      db.ref('ads').push({ name, email, adContent }, function(error) {
+        if (error) {
+          alert("Failed to submit ad.");
+        } else {
+          alert("Payment successful! Ad submitted.");
+        }
+      });
+    },
+    onClose: function() {
+      alert('Payment window closed.');
+    }
+  });
+  handler.openIframe();
+};
+</script>
+</body>
+</html>

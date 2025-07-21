@@ -1,0 +1,35 @@
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: url('../images/university-bg.jpg') center/cover no-repeat fixed;
+  backdrop-filter: blur(8px);
+  color: #fff;
+  text-align: center;
+  padding: 1em;
+}
+.header {
+  background: rgba(0, 0, 50, 0.7);
+  padding: 1em;
+}
+h1, h2 {
+  color: gold;
+}
+button {
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  background-color: teal;
+  color: white;
+  border: none;
+  margin-top: 1em;
+  cursor: pointer;
+}
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 1.4em;
+  }
+  button {
+    width: 100%;
+    font-size: 1.2em;
+  }
+}
